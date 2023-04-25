@@ -10,7 +10,7 @@ export const config: Options.Testrunner = {
     ...baseConfig,
 
     specs: [
-        "./test/specs/chrome/**/challenging.dom.test.ts"
+        "./test/specs/chrome/**/context.menu.test.ts"
     ],
 
     capabilities: [

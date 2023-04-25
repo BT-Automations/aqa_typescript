@@ -1,4 +1,3 @@
-import {$$, $, browser} from "@wdio/globals"
 import Page from "./page";
 
 const path: string = 'add_remove_elements/'
