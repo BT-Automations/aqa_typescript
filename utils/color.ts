@@ -1,4 +1,4 @@
-export default class Color {
+class Color {
     private readonly red: number
     private readonly green: number
     private readonly blue: number
