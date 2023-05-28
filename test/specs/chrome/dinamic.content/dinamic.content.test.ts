@@ -1,8 +1,8 @@
-import DinamicContentPage from "../../../pageobjects/dinamic.content.page";
+import DynamicContentPage from "../../../pageobjects/dinamic.content.page";
 
 describe('', () => {
     it('should ', async () => {
-        await DinamicContentPage.open()
-        expect(await DinamicContentPage.checkDinamicContent()).toEqual(20)
+        await DynamicContentPage.open()
+        expect(await DynamicContentPage.checkDynamicContent()).toEqual(20)
     });
 })

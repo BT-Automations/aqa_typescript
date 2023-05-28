@@ -10,7 +10,7 @@ export const config: Options.Testrunner = {
     ...baseConfig,
 
     specs: [
-        "./test/specs/chrome/**/dinamic.content.test.ts"
+        "./test/specs/chrome/**/dynamic.control.test.ts"
     ],
 
     capabilities: [
