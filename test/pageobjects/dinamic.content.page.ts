@@ -1,6 +1,6 @@
 import Page from "./page";
 
-class DinamicContentPage extends Page {
+class DynamicContentPage extends Page {
 
     get clickHere () {
         return $('p a')
@@ -14,7 +14,7 @@ class DinamicContentPage extends Page {
         return super.open('dynamic_content?with_content=static');
     }
 
-    async checkDinamicContent (): Promise<number> {
+    async checkDynamicContent (): Promise<number> {
         const text = await this.content.getText()
         await this.clickHere.click()
 
@@ -31,4 +31,4 @@ class DinamicContentPage extends Page {
     }
 }
 
-export default new DinamicContentPage()
+export default new DynamicContentPage()

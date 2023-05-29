@@ -10,12 +10,12 @@ export const config: Options.Testrunner = {
     ...baseConfig,
 
     specs: [
-        "./test/specs/chrome/**/dinamic.content.test.ts"
+        "./test/specs/chrome/**/dynamic.control.test.ts"
     ],
 
     capabilities: [
         CAPABILITIES(LAUNCH_PARAMETERS.BROWSERS.CHROME, LAUNCH_PARAMETERS.CHROME_VERSION)
     ],
 
-    services: ['chromedriver', 'geckodriver'],
+    // services: ['chromedriver', 'geckodriver'],
 }
