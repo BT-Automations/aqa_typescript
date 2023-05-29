@@ -17,5 +17,5 @@ export const config: Options.Testrunner = {
         CAPABILITIES(LAUNCH_PARAMETERS.BROWSERS.CHROME, LAUNCH_PARAMETERS.CHROME_VERSION)
     ],
 
-    services: ['chromedriver', 'geckodriver'],
+    // services: ['chromedriver', 'geckodriver'],
 }
