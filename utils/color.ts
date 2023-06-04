@@ -15,7 +15,7 @@ class Color {
             const regexpRGB: RegExp = /.*\((?<red>\d{0,3}), (?<green>\d{0,3}), (?<blue>\d{0,3}).*\)/g
             const rgb = map[0].match(regexpRGB)
 
-            const {red, green, blue} = rgb.match(regexpRGB).groups
+            const {red, green, blue} = rgb.match(regexpRGB.exec(rgb)).groups
 
             this.red = Number.parseInt(red)
             this.green = Number.parseInt(green)
