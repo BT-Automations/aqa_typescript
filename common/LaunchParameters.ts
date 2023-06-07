@@ -1,5 +1,10 @@
 import {SELENOID_SESSION_TIMEOUTS} from "./Timeouts";
 
+export const RUN_ENV = /^true$/i.test(parseParameters('D_env', 'false')) ? [] : ['chromedriver','geckodriver']
+export const BROWSER_PARAM = parseParameters('D_browser', 'chrome')
+export const VERSION = parseParameters('D_version', '112.0')
+export const TEST_CASE = parseParameters('D_test', 'chrome/**/abtest.test.ts')
+
 export const LAUNCH_PARAMETERS = {
     BROWSERS: {
         CHROME: 'chrome',
@@ -63,4 +68,22 @@ export function CAPABILITIES(browser: string, version: string) {
         "moz:firefoxOptions": BROWSER_OPTIONS,
         "selenoid:options": SELENOID_OPTIONS
     }
+}
+
+function parseParameters(key: string, defaultValue: string): any {
+    const regex = /(?<key>.*)=(?<value>.*)/gm
+    let param = new Map()
+
+    process.argv.forEach(item => {
+        let group = item.match(regex)
+
+        if (group !== null) {
+            const {key, value} = regex.exec(item).groups
+            param.set(key, value)
+        }
+    })
+
+    const getKey = param.get(key)
+
+    return getKey !== null && getKey !== undefined ? getKey : defaultValue
 }
