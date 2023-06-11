@@ -40,12 +40,14 @@ class EntryAdPage extends Page {
 
     async reopenModal(count: number) {
         for (let i = 0; i < count; i++) {
-            await this.clickHereButton.click()
+            // await this.clickHereButton.click()
+            await this.doClick(this.clickHereButton)
         }
     }
 
     async closeModal() {
-        await this.modalWindowCloseButton.click()
+        // await this.modalWindowCloseButton.click()
+        await this.doClick(this.modalWindowCloseButton)
         expect(await this.modalWindow.isDisplayed()).not.toBeDisplayed()
     }
 }
