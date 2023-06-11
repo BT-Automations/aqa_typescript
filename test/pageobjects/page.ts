@@ -15,9 +15,11 @@ export default class Page {
     private url: string = 'https://the-internet.herokuapp.com/'
 
     public async open(path: string) {
-        await this.Logger.step(`Open '${this.url + path}' element`, async () => {
-            return browser.url(this.url + path)
+        await this.Logger.step(`Open url: '${this.url + path}'`, async () => {
+            return browser.url(this.url + path);
         })
+
+        await browser.takeScreenshot()
     }
 
     async doClick(element: WebdriverIO['$']) {
