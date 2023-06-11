@@ -12,7 +12,7 @@ export default class Page {
     * @param path path of the sub page (e.g. /path/to/page.html)
     */
     public getLogger = logger
-    public url: string = 'https://the-internet.herokuapp.com/'
+    private url: string = 'https://the-internet.herokuapp.com/'
 
     public open (path: string) {
         return browser.url(this.url + path)

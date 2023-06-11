@@ -1,16 +1,7 @@
 import type {Options} from '@wdio/types'
 import {browser} from "@wdio/globals"
-import {
-    REMOTE_CONNECTION_OPTIONS,
-    LAUNCH_PARAMETERS,
-    TEST_RUN_PATH,
-    CAPABILITIES
-} from "./common/LaunchParameters.ts";
-import {
-    BROWSER_DEFAULT_TIMEOUTS,
-    CONNECTION_RETRY_TIMEOUT,
-    WAIT_FOR_TIMEOUT,
-} from "./common/Timeouts.ts";
+import {CAPABILITIES, LAUNCH_PARAMETERS, REMOTE_CONNECTION_OPTIONS, TEST_RUN_PATH} from "./common/LaunchParameters.ts";
+import {BROWSER_DEFAULT_TIMEOUTS, CONNECTION_RETRY_TIMEOUT, WAIT_FOR_TIMEOUT,} from "./common/Timeouts.ts";
 
 export const config: Options.Testrunner = {
     //
@@ -159,7 +150,7 @@ export const config: Options.Testrunner = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec', ['allure', {outputDir: 'allure-results'}]],
+    // reporters: ['spec', ['allure', {outputDir: 'allure-results'}]],
 
     //
     // Options to be passed to Mocha.
