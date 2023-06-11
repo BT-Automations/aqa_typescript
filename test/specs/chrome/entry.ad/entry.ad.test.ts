@@ -17,6 +17,5 @@ describe('Entry Ad', () => {
         await EntryAdPage.reopenModal(1)
         await EntryAdPage.waitForModalWindowVisibility()
         await EntryAdPage.closeModal()
-
     });
 })
