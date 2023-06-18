@@ -40,10 +40,13 @@ describe('Entry Ad', () => {
         // await allure.addFeature('addFeature')
         // await allure.addLink('http://localhost:8080', 'addLink')
 
-        await step('open', async () => {
+        // await step('open', async () => {
+        //     await EntryAdPage.open()
+        // })
+
+        await addStep('Open', [
             await EntryAdPage.open()
-            console.log('SEX')
-        })
+        ])
 
         await step('Wait modal', async () => {
             await EntryAdPage.waitForModalWindowVisibility()
