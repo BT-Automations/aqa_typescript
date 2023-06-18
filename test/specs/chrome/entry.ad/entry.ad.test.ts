@@ -4,7 +4,7 @@ import {baseStep} from "../../../../common/TestAgent";
 
 import logger from '@wdio/logger';
 
-const log = logger('@wdio/cli');
+const log = logger
 
 describe('Entry Ad', () => {
     // it('entry ad test', async () => {
@@ -48,7 +48,7 @@ describe('Entry Ad', () => {
             await EntryAdPage.open()
         })
 
-        log.log('Wait modal')
+        log.apply('\'Wait modal\'')
 
         await step('Wait modal', async () => {
             await EntryAdPage.waitForModalWindowVisibility()
