@@ -28,7 +28,7 @@ describe('Entry Ad', () => {
 
     it('Entry ad test', async () => {
 
-        logger.apply('startStep')
+
         await baseStep('', async () => {
             await EntryAdPage.open()
         })
@@ -55,6 +55,7 @@ describe('Entry Ad', () => {
 
         await addStep('Reopen modal window')
         await EntryAdPage.reopenModal(1)
+        logger.apply('startStep')
 
         await EntryAdPage.waitForModalWindowVisibility()
         await EntryAdPage.closeModal()
