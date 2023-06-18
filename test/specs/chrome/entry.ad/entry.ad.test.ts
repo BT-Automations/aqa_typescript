@@ -1,5 +1,5 @@
 import EntryAdPage from "../../../pageobjects/entry.ad.page";
-import {addStep, step} from "@wdio/allure-reporter"
+import {addStep, startStep, step} from "@wdio/allure-reporter"
 import {baseStep} from "../../../../common/TestAgent";
 
 describe('Entry Ad', () => {
@@ -25,6 +25,7 @@ describe('Entry Ad', () => {
     // });
 
     it('Entry ad test', async () => {
+        await startStep('Entry ad test')
 
         await baseStep('', async () => {
             await EntryAdPage.open()
