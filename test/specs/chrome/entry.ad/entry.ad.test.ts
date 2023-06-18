@@ -2,7 +2,7 @@ import EntryAdPage from "../../../pageobjects/entry.ad.page";
 import allure, {addStep, step} from "@wdio/allure-reporter"
 import {baseStep} from "../../../../common/TestAgent";
 
-import logger from '@wdio/cli';
+import logger from '@wdio/logger';
 
 describe('Entry Ad', () => {
     // it('entry ad test', async () => {
@@ -28,7 +28,7 @@ describe('Entry Ad', () => {
 
     it('Entry ad test', async () => {
 
-        logger.Launcher.apply('startStep')
+        logger.apply('startStep')
         await baseStep('', async () => {
             await EntryAdPage.open()
         })
