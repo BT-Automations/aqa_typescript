@@ -4,7 +4,7 @@ import allure from "@wdio/allure-reporter"
 describe('Entry Ad', () => {
     allure.addLabel('Entry Ad', 'BT-1')
     it('entry ad test', async () => {
-        await allure.step('open xentry ad page', async () => {
+        await allure.step('open entry ad page', async () => {
             await EntryAdPage.open()
         })
 
