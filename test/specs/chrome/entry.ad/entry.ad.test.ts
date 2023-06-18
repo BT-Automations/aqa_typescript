@@ -1,6 +1,10 @@
 import EntryAdPage from "../../../pageobjects/entry.ad.page";
-import allure, {addStep, step} from "@wdio/allure-reporter"
+import {addStep, step} from "@wdio/allure-reporter"
 import {baseStep} from "../../../../common/TestAgent";
+
+import logger from '@wdio/logger';
+
+const log = logger('@wdio/cli');
 
 describe('Entry Ad', () => {
     // it('entry ad test', async () => {
@@ -26,23 +30,25 @@ describe('Entry Ad', () => {
 
     it('Entry ad test', async () => {
 
-
         await baseStep('', async () => {
             await EntryAdPage.open()
         })
 
-        await allure.addAttachment('addAttachment', {}, '')
-        await allure.startStep('startStep')
-        await allure.addLabel('addLabel', 'addLabel')
-        await allure.addAllureId('addAllureId')
-        await allure.addArgument('addArgument', 'addArgument')
-        await allure.addEnvironment('addEnvironment', 'addEnvironment')
-        await allure.addEpic('addEpic')
-        await allure.addFeature('addFeature')
+        // await allure.addAttachment('addAttachment', {}, '')
+        // await allure.startStep('startStep')
+        // await allure.addLabel('addLabel', 'addLabel')
+        // await allure.addAllureId('addAllureId')
+        // await allure.addArgument('addArgument', 'addArgument')
+        // await allure.addEnvironment('addEnvironment', 'addEnvironment')
+        // await allure.addEpic('addEpic')
+        // await allure.addFeature('addFeature')
         // await allure.addLink('http://localhost:8080', 'addLink')
+
         await step('open', async () => {
             await EntryAdPage.open()
         })
+
+        log.log('Wait modal')
 
         await step('Wait modal', async () => {
             await EntryAdPage.waitForModalWindowVisibility()
