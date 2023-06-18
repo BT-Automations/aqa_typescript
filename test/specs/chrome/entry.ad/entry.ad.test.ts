@@ -22,4 +22,25 @@ describe('Entry Ad', () => {
         await EntryAdPage.waitForModalWindowVisibility()
         await EntryAdPage.closeModal()
     });
+
+    it('entry ad tes', async () => {
+        await step('open entry ad page', async () => {
+            await EntryAdPage.open()
+        })
+
+        await step('wait For Modal Window Visibility', async () => {
+            await EntryAdPage.waitForModalWindowVisibility()
+        })
+
+        await step('close modal window', async () => {
+            await EntryAdPage.closeModal()
+        })
+
+        await step('Reopen modal window', async () => {
+            await EntryAdPage.reopenModal(1)
+        })
+
+        await EntryAdPage.waitForModalWindowVisibility()
+        await EntryAdPage.closeModal()
+    });
 })
