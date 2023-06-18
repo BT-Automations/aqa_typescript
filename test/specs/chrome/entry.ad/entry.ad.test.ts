@@ -42,6 +42,7 @@ describe('Entry Ad', () => {
 
         await step('open', async () => {
             await EntryAdPage.open()
+            console.log('SEX')
         })
 
         await step('Wait modal', async () => {
