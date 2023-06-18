@@ -1,4 +1,4 @@
-import logger, {step} from "@wdio/allure-reporter"
+import logger, {addStep} from "@wdio/allure-reporter"
 import {browser} from "@wdio/globals"
 
 /**
@@ -15,16 +15,14 @@ export default class Page {
     private url: string = 'https://the-internet.herokuapp.com/'
 
     public async open(path: string) {
-        await step(`Open url: '${this.url + path}'`, async () => {
-            await browser.url(this.url + path);
-            await browser.takeScreenshot()
-        })
+        await addStep(`Open url: '${this.url + path}'`)
+        await browser.url(this.url + path);
+        await browser.takeScreenshot()
     }
 
     async doClick(element: WebdriverIO['$']) {
-        await step(`Click ${await (element.selector)} element`, async () => {
-            await element.click()
-            await browser.takeScreenshot()
-        })
+        await addStep(`Click ${await (element.selector)} element`)
+        await element.click()
+        await browser.takeScreenshot()
     }
 }

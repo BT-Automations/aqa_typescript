@@ -1,4 +1,5 @@
 import Page from "./page";
+import {addStep} from "@wdio/allure-reporter";
 
 class EntryAdPage extends Page {
 
@@ -25,6 +26,7 @@ class EntryAdPage extends Page {
     }
 
     async waitForModalWindowVisibility() {
+        await addStep('Wait For Modal Window Visibility')
         await this.modalWindow.waitUntil(
             async () => {
                 return (
