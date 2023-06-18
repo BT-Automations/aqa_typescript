@@ -27,7 +27,7 @@ describe('Entry Ad', () => {
     it('entry ad test', async () => {
 
         await baseStep('', async () => {
-
+            await EntryAdPage.open()
         })
 
         allure.addAttachment('addAttachment', {}, '')
@@ -36,7 +36,7 @@ describe('Entry Ad', () => {
         allure.addAllureId('addAllureId')
         allure.addArgument('addArgument', 'addArgument')
         allure.addEnvironment('addEnvironment', 'addEnvironment')
-        allure.addEpic('addEpic')
+        // allure.addEpic('addEpic')
         allure.addFeature('addFeature')
         allure.addLink('http://localhost:8080', 'addLink')
         await step('open', async () => {
