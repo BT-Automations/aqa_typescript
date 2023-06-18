@@ -92,7 +92,7 @@ function parseParameters(key: string, defaultValue: string): any {
 }
 
 function readTestCase(cases: string) {
-    const regex = /-[a-z.0-9*]*/gm
+    const regex = /-[a-z.0-9*_]*/gm
     let tests: string[] = []
 
     cases.match(regex).forEach(item => {
