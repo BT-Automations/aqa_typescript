@@ -1,5 +1,6 @@
 import EntryAdPage from "../../../pageobjects/entry.ad.page";
-import {addStep, step} from "@wdio/allure-reporter"
+import allure, {addStep, step} from "@wdio/allure-reporter"
+import {baseStep} from "../../../../common/TestAgent";
 
 describe('Entry Ad', () => {
     // it('entry ad test', async () => {
@@ -25,6 +26,19 @@ describe('Entry Ad', () => {
 
     it('entry ad test', async () => {
 
+        await baseStep('', async () => {
+
+        })
+
+        allure.addAttachment('addAttachment', {}, '')
+        allure.startStep('startStep')
+        allure.addLabel('addLabel', 'addLabel')
+        allure.addAllureId('addAllureId')
+        allure.addArgument('addArgument', 'addArgument')
+        allure.addEnvironment('addEnvironment', 'addEnvironment')
+        allure.addEpic('addEpic')
+        allure.addFeature('addFeature')
+        allure.addLink('http://localhost:8080', 'addLink')
         await step('open', async () => {
             await EntryAdPage.open()
         })
