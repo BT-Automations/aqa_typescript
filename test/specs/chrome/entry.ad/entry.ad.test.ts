@@ -5,9 +5,6 @@ describe('Entry Ad', () => {
     it('entry ad test', async () => {
         await step('open entry ad page', async () => {
             await EntryAdPage.open()
-            await step('open entry ad page', async () => {
-                await EntryAdPage.open()
-            })
         })
 
         await step('wait For Modal Window Visibility', async () => {
