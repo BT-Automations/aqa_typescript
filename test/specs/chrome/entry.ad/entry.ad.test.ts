@@ -4,7 +4,7 @@ import {baseStep} from "../../../../common/TestAgent";
 
 import logger from '@wdio/logger';
 
-const log = logger
+const log = logger('@wdio/allure-reporter')
 
 describe('Entry Ad', () => {
     // it('entry ad test', async () => {
@@ -34,6 +34,7 @@ describe('Entry Ad', () => {
             await EntryAdPage.open()
         })
 
+        log.log('SEX')
         // await allure.addAttachment('addAttachment', {}, '')
         // await allure.startStep('startStep')
         // await allure.addLabel('addLabel', 'addLabel')
@@ -47,8 +48,6 @@ describe('Entry Ad', () => {
         await step('open', async () => {
             await EntryAdPage.open()
         })
-
-        log.apply('\'Wait modal\'')
 
         await step('Wait modal', async () => {
             await EntryAdPage.waitForModalWindowVisibility()
