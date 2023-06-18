@@ -24,20 +24,20 @@ describe('Entry Ad', () => {
     //     await EntryAdPage.closeModal()
     // });
 
-    it('entry ad test', async () => {
+    it('Entry ad test', async () => {
 
         await baseStep('', async () => {
             await EntryAdPage.open()
         })
 
-        await allure.addAttachment('addAttachment', {}, '')
+        // await allure.addAttachment('addAttachment', {}, '')
         await allure.startStep('startStep')
-        await allure.addLabel('addLabel', 'addLabel')
-        await allure.addAllureId('addAllureId')
-        await allure.addArgument('addArgument', 'addArgument')
-        await allure.addEnvironment('addEnvironment', 'addEnvironment')
+        // await allure.addLabel('addLabel', 'addLabel')
+        // await allure.addAllureId('addAllureId')
+        // await allure.addArgument('addArgument', 'addArgument')
+        // await allure.addEnvironment('addEnvironment', 'addEnvironment')
         // allure.addEpic('addEpic')
-        await allure.addFeature('addFeature')
+        // await allure.addFeature('addFeature')
         // await allure.addLink('http://localhost:8080', 'addLink')
         await step('open', async () => {
             await EntryAdPage.open()
