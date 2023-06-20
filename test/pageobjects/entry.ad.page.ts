@@ -1,5 +1,6 @@
 import Page from "./page";
-import {addStep} from "@wdio/allure-reporter";
+import Assertions from "../../common/Assertions";
+import TestAgent from "../../common/TestAgent";
 
 class EntryAdPage extends Page {
 
@@ -26,31 +27,35 @@ class EntryAdPage extends Page {
     }
 
     async waitForModalWindowVisibility() {
-        await addStep('Wait For Modal Window Visibility')
-        await this.modalWindow.waitUntil(
-            async () => {
-                return (
-                    await this.modalWindowTitle.getText() === this.THIS_IS_A_MODAL_WINDOWS
-                )
-            },
-            {
-                timeout: 15000,
-                timeoutMsg: `Modal window title should be '${this.THIS_IS_A_MODAL_WINDOWS}'`
-            }
-        )
+        await TestAgent.baseStep('Wait For Modal Window Visibility', async () => {
+            await this.modalWindow.waitUntil(
+                async () => {
+                    return (
+                        await this.modalWindowTitle.getText() === this.THIS_IS_A_MODAL_WINDOWS
+                    )
+                },
+                {
+                    timeout: 15000,
+                    timeoutMsg: `Modal window should be visible`
+                }
+            )
+        })
     }
 
     async reopenModal(count: number) {
-        for (let i = 0; i < count; i++) {
-            // await this.clickHereButton.click()
-            await this.doClick(this.clickHereButton)
-        }
+        await TestAgent.baseStep(`Reopen modal window ${count} times`, async () => {
+            for (let i = 0; i < count; i++) {
+                await this.doClick(this.clickHereButton)
+            }
+        })
+
     }
 
     async closeModal() {
-        // await this.modalWindowCloseButton.click()
-        await this.doClick(this.modalWindowCloseButton)
-        expect(await this.modalWindow.isDisplayed()).not.toBeDisplayed()
+        await TestAgent.baseStep('Close modal window', async () => {
+            await this.doClick(this.modalWindowCloseButton)
+            await Assertions.notToBeDisplayed(this.modalWindow)
+        })
     }
 }
 

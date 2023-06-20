@@ -7,7 +7,8 @@
     "custom:run": "wdio run wdio.conf.custom.ts",
     "chrome:test": "wdio run wdio.conf.chrome.ts",
     "firefoxtest": "wdio run wdio.conf.firefox.ts",
-    "cross-browser:test": "wdio run wdio.conf.cross-browser.ts"
+    "cross-browser:test": "wdio run wdio.conf.cross-browser.ts",
+    "report": "allure generate allure-results --clean && allure open"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +28,7 @@
     "wdio-geckodriver-service": "^4.1.1"
   },
   "dependencies": {
+    "allure-commandline": "^2.22.4",
     "color-convert": "^2.0.1"
   }
 }

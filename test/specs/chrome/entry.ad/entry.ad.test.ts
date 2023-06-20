@@ -1,94 +1,30 @@
 import EntryAdPage from "../../../pageobjects/entry.ad.page";
-import {addStep, startStep, step} from "@wdio/allure-reporter"
-import {baseStep} from "../../../../common/TestAgent";
+import TestAgent from "../../../../common/TestAgent";
+import AllureReporter from "@wdio/allure-reporter";
+import {Status} from "allure-js-commons";
 
-describe('Entry Ad', () => {
-    // it('entry ad test', async () => {
-    //     await addStep('open entry ad page', async () => {
-    //         await EntryAdPage.open()
-    //     })
-    //
-    //     await addStep('wait For Modal Window Visibility', async () => {
-    //         await EntryAdPage.waitForModalWindowVisibility()
-    //     })
-    //
-    //     await addStep('close modal window', async () => {
-    //         await EntryAdPage.closeModal()
-    //     })
-    //
-    //     await addStep('Reopen modal window', async () => {
-    //         await EntryAdPage.reopenModal(1)
-    //     })
-    //
-    //     await EntryAdPage.waitForModalWindowVisibility()
-    //     await EntryAdPage.closeModal()
-    // });
-
+describe('Suite', () => {
     it('Entry ad test', async () => {
-        await startStep('Entry ad test')
+        await AllureReporter.startStep('Entry ad test')
 
-        await baseStep('', async () => {
+        await TestAgent.baseStep('1. Open entry ad page', async () => {
             await EntryAdPage.open()
         })
-        // await allure.addAttachment('addAttachment', {}, '')
-        // await allure.startStep('startStep')
-        // await allure.addLabel('addLabel', 'addLabel')
-        // await allure.addAllureId('addAllureId')
-        // await allure.addArgument('addArgument', 'addArgument')
-        // await allure.addEnvironment('addEnvironment', 'addEnvironment')
-        // await allure.addEpic('addEpic')
-        // await allure.addFeature('addFeature')
-        // await allure.addLink('http://localhost:8080', 'addLink')
 
-        // await step('open', async () => {
-        //     await EntryAdPage.open()
-        // })
-
-        await addStep('Open', [
-            await EntryAdPage.open()
-        ])
-
-        await step('Wait modal', async () => {
+        await TestAgent.baseStep('2. Wait For Modal Window Visibility', async () => {
             await EntryAdPage.waitForModalWindowVisibility()
+            await EntryAdPage.closeModal()
         })
 
-        await addStep('close modal window')
-        await EntryAdPage.closeModal()
+        await TestAgent.baseStep('3. Reopen modal window 5 times', async () => {
+            await EntryAdPage.reopenModal(5)
+        })
 
-        await addStep('Reopen modal window')
-        await EntryAdPage.reopenModal(1)
+        await TestAgent.baseStep('4. Wait For Modal Window Visibility', async () => {
+            await EntryAdPage.waitForModalWindowVisibility()
+            await EntryAdPage.closeModal()
+        })
 
-        await EntryAdPage.waitForModalWindowVisibility()
-        await EntryAdPage.closeModal()
+        await AllureReporter.endStep(Status.PASSED)
     });
-
-    // it('entry ad test', async () => {
-    //     await step('open entry ad page', async () => {
-    //         await EntryAdPage.open()
-    //     })
-    // });
-    // it('wait For Modal Window Visibility', async () => {
-    //     await step('open entry ad page', async () => {
-    //         await EntryAdPage.open()
-    //     })
-    // });
-    // it('wait For Modal Window Visibility', async () => {
-    //     await step('wait For Modal Window Visibility', async () => {
-    //         await EntryAdPage.waitForModalWindowVisibility()
-    //     })
-    // });
-    // it('close modal window', async () => {
-    //     await step('close modal window', async () => {
-    //         await EntryAdPage.closeModal()
-    //     })
-    // });
-    // it('Reopen modal window', async () => {
-    //     await step('Reopen modal window', async () => {
-    //         await EntryAdPage.reopenModal(1)
-    //     })
-    // });
-    // it('entry ad tes', async () => {
-    //     await EntryAdPage.waitForModalWindowVisibility()
-    //     await EntryAdPage.closeModal()
-    // });
 })

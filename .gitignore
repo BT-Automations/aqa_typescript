@@ -1,4 +1,5 @@
 allure-results
+allure-report
 node_module
 # Project exclude paths
 /node_modules/
