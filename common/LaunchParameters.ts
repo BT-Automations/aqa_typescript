@@ -3,7 +3,10 @@ import {SELENOID_SESSION_TIMEOUTS} from "./Timeouts";
 export const RUN_ENV = /^true$/i.test(parseParameters('D_env', 'false')) ? [] : ['chromedriver','geckodriver']
 export const BROWSER_PARAM = parseParameters('D_browser', 'chrome')
 export const VERSION = parseParameters('D_version', '114.0')
-export const TEST_CASE = parseParameters('D_test', 'chrome/**/abtest.test.ts')
+export const TEST_CASE = readTestCase(parseParameters('D_test', 'abtest'))
+
+// export const TEST_CASE = parseParameters('D_test', 'chrome/**/abtest.test.ts')
+// export const TEST_CASES = `./test/specs/**/${parseParameters('D_tests', 'abtest')}.test.ts, \\.\\/[a-z\\/*.]*\\.ts`
 
 export const LAUNCH_PARAMETERS = {
     BROWSERS: {
@@ -86,4 +89,15 @@ function parseParameters(key: string, defaultValue: string): any {
     const getKey = param.get(key)
 
     return getKey !== null && getKey !== undefined ? getKey : defaultValue
+}
+
+function readTestCase(cases: string) {
+    const regex = /-[a-z.0-9*_]*/gm
+    let tests: string[] = []
+
+    cases.match(regex).forEach(item => {
+        tests.push(`./test/specs/**/${item.replace('-', '')}.test.ts`)
+    })
+
+    return tests
 }

@@ -1,4 +1,5 @@
 import Page from "./page";
+import {addStep, step} from "@wdio/allure-reporter";
 
 const path: string = 'add_remove_elements/'
 
@@ -23,7 +24,7 @@ class AddRemoveElementsPage extends Page {
     }
 
     async addNewElementForCount(count: number) {
-        this.getLogger.addStep(`Add new element of ${count} count`)
+        addStep(`Add new element of ${count} count`)
         for (let i = 0; i < count; i++) {
             await this.addElementButton.click()
         }
@@ -38,8 +39,8 @@ class AddRemoveElementsPage extends Page {
     }
 
     async deleteElementForCount(count: number) {
-        this.getLogger.addStep(`Delete element of ${count} count`)
-        await this.getLogger.step('', async () => {
+        addStep(`Delete element of ${count} count`)
+        await step('', async () => {
 
         })
         for (let i = 0; i < count; i++) {

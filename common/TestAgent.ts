@@ -1,21 +1,33 @@
-import logger, {addStep, step} from "@wdio/allure-reporter"
+import AllureReporter, {endStep, startStep, step} from "@wdio/allure-reporter"
+import {browser} from "@wdio/globals";
+import {Status} from "allure-js-commons";
 
 class TestAgent {
-    async step(title: string, fn: Function) {
-        await logger.addStep(title, fn)
-    }
-
     async baseStep(title: string, fn: Function) {
-        await logger.step(title, fn)
+        await startStep(title);
+        try {
+            await fn()
+            await browser.takeScreenshot()
+            await endStep(Status.PASSED);
+        } catch (e) {
+            await AllureReporter.addAttachment('Error', e + '', 'text/plain')
+            await endStep(Status.FAILED);
+            return new Error()
+        }
+
     }
 }
 
-export async function myStep(title: string, fn: Function) {
-    await addStep(title, fn)
-}
-
-export async function baseStep(title: string, fn: Function) {
-    await step(title, fn)
+export async function step(title: string, fn) {
+    try {
+        await step(title, fn);
+        await browser.takeScreenshot()
+        await endStep(Status.PASSED);
+    } catch (e) {
+        await AllureReporter.addAttachment('Error', e + '', 'text/plain')
+        await endStep(Status.FAILED);
+        return new Error()
+    }
 }
 
 export default new TestAgent()

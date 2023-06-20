@@ -1,25 +1,30 @@
 import EntryAdPage from "../../../pageobjects/entry.ad.page";
-import allure from "@wdio/allure-reporter"
+import TestAgent from "../../../../common/TestAgent";
+import AllureReporter from "@wdio/allure-reporter";
+import {Status} from "allure-js-commons";
 
-describe('Entry Ad', () => {
-    it('entry ad test', async () => {
-        await allure.step('open entry ad page', async () => {
+describe('Suite', () => {
+    it('Entry ad test', async () => {
+        await AllureReporter.startStep('Entry ad test')
+
+        await TestAgent.baseStep('1. Open entry ad page', async () => {
             await EntryAdPage.open()
         })
 
-        await allure.step('wait For Modal Window Visibility', async () => {
+        await TestAgent.baseStep('2. Wait For Modal Window Visibility', async () => {
             await EntryAdPage.waitForModalWindowVisibility()
-        })
-
-        await EntryAdPage.Logger.step('close modal window', async () => {
             await EntryAdPage.closeModal()
         })
 
-        await EntryAdPage.Logger.step('Reopen modal window', async () => {
-            await EntryAdPage.reopenModal(1)
+        await TestAgent.baseStep('3. Reopen modal window 5 times', async () => {
+            await EntryAdPage.reopenModal(5)
         })
 
-        await EntryAdPage.waitForModalWindowVisibility()
-        await EntryAdPage.closeModal()
+        await TestAgent.baseStep('4. Wait For Modal Window Visibility', async () => {
+            await EntryAdPage.waitForModalWindowVisibility()
+            await EntryAdPage.closeModal()
+        })
+
+        await AllureReporter.endStep(Status.PASSED)
     });
 })
