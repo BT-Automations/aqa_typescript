@@ -37,6 +37,7 @@ export const BROWSER_OPTIONS = {
 
 export const SELENOID_OPTIONS = {
     enableVNC: true,
+    enableVideo: true,
     name: 'garnik',
     sessionTimeout: SELENOID_SESSION_TIMEOUTS
     // labels

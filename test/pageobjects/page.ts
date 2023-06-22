@@ -23,7 +23,6 @@ export default class Page {
     async doClick(element: WebdriverIO.Element | WebdriverIO.Element[$]) {
         await TestAgent.baseStep(`Click ${await (element.selector)} element`, async () => {
             await element.click()
-
         })
     }
 
