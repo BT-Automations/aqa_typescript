@@ -3,10 +3,7 @@ import {SELENOID_SESSION_TIMEOUTS} from "./Timeouts";
 export const RUN_ENV = /^true$/i.test(parseParameters('D_env', 'false')) ? [] : ['chromedriver','geckodriver']
 export const BROWSER_PARAM = parseParameters('D_browser', 'chrome')
 export const VERSION = parseParameters('D_version', '114.0')
-export const TEST_CASE = readTestCase(parseParameters('D_test', 'abtest'))
-
-// export const TEST_CASE = parseParameters('D_test', 'chrome/**/abtest.test.ts')
-// export const TEST_CASES = `./test/specs/**/${parseParameters('D_tests', 'abtest')}.test.ts, \\.\\/[a-z\\/*.]*\\.ts`
+export const TEST_CASE = readTestCase(parseParameters('D_test', '-abtest'))
 
 export const LAUNCH_PARAMETERS = {
     BROWSERS: {
@@ -14,7 +11,6 @@ export const LAUNCH_PARAMETERS = {
         FIREFOX: 'firefox'
     },
 
-    // Versions [ '112.0', '111.0' ]
     CHROME_VERSION: '112.0',
     FIREFOX_VERSION: '111.0',
 
@@ -37,6 +33,7 @@ export const BROWSER_OPTIONS = {
 
 export const SELENOID_OPTIONS = {
     enableVNC: true,
+    enableVideo: true,
     name: 'garnik',
     sessionTimeout: SELENOID_SESSION_TIMEOUTS
     // labels
@@ -46,12 +43,6 @@ export const REMOTE_CONNECTION_OPTIONS = {
     HOST_NAME: 'localhost',
     PORT: 4444,
     PATH: '/wd/hub'
-}
-
-export const TEST_RUN_PATH = {
-    CHROME_TEST: './test/specs/chrome/**/*.test.ts',
-    FIREFOX_TEST: './test/specs/firefox/**/*.test.ts',
-    ALL_TEST: './test/specs/**/*.test.ts'
 }
 
 export function CAPABILITIES(browser: string, version: string) {
@@ -96,7 +87,7 @@ function readTestCase(cases: string) {
     let tests: string[] = []
 
     cases.match(regex).forEach(item => {
-        tests.push(`./test/specs/**/${item.replace('-', '')}.test.ts`)
+        tests.push(`./test/regression/${BROWSER_PARAM}/**/${item.replace('-', '')}.test.ts`)
     })
 
     return tests

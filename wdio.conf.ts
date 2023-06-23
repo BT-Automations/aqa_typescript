@@ -1,16 +1,7 @@
 import type {Options} from '@wdio/types'
 import {browser} from "@wdio/globals"
-import {
-    REMOTE_CONNECTION_OPTIONS,
-    LAUNCH_PARAMETERS,
-    TEST_RUN_PATH,
-    CAPABILITIES
-} from "./common/LaunchParameters.ts";
-import {
-    BROWSER_DEFAULT_TIMEOUTS,
-    CONNECTION_RETRY_TIMEOUT,
-    WAIT_FOR_TIMEOUT,
-} from "./common/Timeouts.ts";
+import {CAPABILITIES, LAUNCH_PARAMETERS, REMOTE_CONNECTION_OPTIONS} from "./common/LaunchParameters.ts";
+import {BROWSER_DEFAULT_TIMEOUTS, CONNECTION_RETRY_TIMEOUT, WAIT_FOR_TIMEOUT,} from "./common/Timeouts.ts";
 
 export const config: Options.Testrunner = {
     //
@@ -26,7 +17,6 @@ export const config: Options.Testrunner = {
             transpileOnly: true
         }
     },
-
 
     //
     // =====================
@@ -57,15 +47,15 @@ export const config: Options.Testrunner = {
     // If you are calling `wdio` from an NPM script (see https://docs.npmjs.com/cli/run-script),
     // then the current working directory is where your `package.json` resides, so `wdio`
     // will be called from there.
-    //
-    specs: [
-        TEST_RUN_PATH.ALL_TEST
-    ],
+
+    // specs: [
+    //     TEST_RUN_PATH.CHROME_TEST
+    // ],
     // Patterns to exclude.
-    exclude: [
-        // 'path/to/excluded/files'
-    ],
-    //
+    // exclude: [
+    //     // 'path/to/excluded/files'
+    // ],
+
     // ============
     // Capabilities
     // ============
@@ -88,8 +78,7 @@ export const config: Options.Testrunner = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [
-        CAPABILITIES(LAUNCH_PARAMETERS.BROWSERS.CHROME, LAUNCH_PARAMETERS.CHROME_VERSION),
-        CAPABILITIES(LAUNCH_PARAMETERS.BROWSERS.FIREFOX, LAUNCH_PARAMETERS.FIREFOX_VERSION)
+        CAPABILITIES(LAUNCH_PARAMETERS.BROWSERS.CHROME, LAUNCH_PARAMETERS.CHROME_VERSION)
     ],
     //
     // ===================
@@ -109,10 +98,10 @@ export const config: Options.Testrunner = {
     // - @wdio/sumologic-reporter
     // - @wdio/cli, @wdio/config, @wdio/utils
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    // logLevels: {
-    //     webdriver: 'info',
-    //     '@wdio/appium-service': 'info'
-    // },
+    logLevels: {
+        webdriver: 'silent',
+        '@wdio/appium-service': 'info',
+    },
     //
     // If you only want to run your tests until a specific amount of tests have failed use
     // bail (default is 0 - don't bail, run all tests).
@@ -160,8 +149,14 @@ export const config: Options.Testrunner = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec', ['allure', {outputDir: 'allure-results'}]],
-
+    // reporters: ['spec', ['allure', {outputDir: 'allure-results'}]],
+    reporters: [
+        ['allure', {
+            outputDir: 'allure-results',
+            disableWebdriverStepsReporting: true,
+            disableWebdriverScreenshotsReporting: false,
+        }]
+    ],
 
     //
     // Options to be passed to Mocha.
@@ -240,9 +235,8 @@ export const config: Options.Testrunner = {
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
-    beforeTest: async function (test, context) {
-        await browser.maximizeWindow()
-    },
+    // beforeTest: function (test, context) {
+    // },
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
      * beforeEach in Mocha)
@@ -321,8 +315,4 @@ export const config: Options.Testrunner = {
      */
     // onReload: function(oldSessionId, newSessionId) {
     // }
-}
-
-export {
-    config
 }

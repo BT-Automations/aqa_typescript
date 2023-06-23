@@ -1,4 +1,5 @@
 import AbTestPage from "../../../pageobjects/ab.test.page";
+import TestAgent from "../../../../common/TestAgent";
 
 describe('A/B Test Variation 1', () => {
 
@@ -10,7 +11,12 @@ describe('A/B Test Variation 1', () => {
         '(e.g. a user action such as a click-through).'
 
     it('Page contain text...', async () => {
-        await AbTestPage.open()
-        await AbTestPage.checkParTextElementContainText(text)
+        await TestAgent.baseStep('Open AB-TEST page', async () => {
+            await AbTestPage.open()
+        })
+
+        await TestAgent.baseStep(`Check par text element contain text: \n'${text}'`, async () => {
+            await AbTestPage.checkParTextElementContainText(text)
+        })
     })
 })

@@ -28,7 +28,7 @@ class EntryAdPage extends Page {
 
     async waitForModalWindowVisibility() {
         await TestAgent.baseStep('Wait For Modal Window Visibility', async () => {
-            await this.modalWindow.waitUntil(
+            return this.modalWindow.waitUntil(
                 async () => {
                     return (
                         await this.modalWindowTitle.getText() === this.THIS_IS_A_MODAL_WINDOWS
@@ -48,7 +48,6 @@ class EntryAdPage extends Page {
                 await this.doClick(this.clickHereButton)
             }
         })
-
     }
 
     async closeModal() {
