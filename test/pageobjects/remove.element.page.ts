@@ -1,5 +1,5 @@
 import Page from "./page";
-import {addStep, step} from "@wdio/allure-reporter";
+import TestAgent from "../../common/TestAgent";
 
 const path: string = 'add_remove_elements/'
 
@@ -15,38 +15,36 @@ class AddRemoveElementsPage extends Page {
 
     async open() {
         await super.open(path)
-        await browser.takeScreenshot();
     }
 
     async addNewElement() {
-        await this.addNewElementForCount(1)
-        await browser.takeScreenshot();
+        await TestAgent.baseStep('add new element', async () => {
+            await this.addNewElementForCount(1)
+        })
     }
 
     async addNewElementForCount(count: number) {
-        addStep(`Add new element of ${count} count`)
-        for (let i = 0; i < count; i++) {
-            await this.addElementButton.click()
-        }
-        await browser.takeScreenshot();
+        await TestAgent.baseStep(`Add new element of ${count} count`, async () => {
+            for (let i = 0; i < count; i++) {
+                await this.doClick(this.addElementButton)
+            }
+        })
     }
 
     async deleteElement(item: number = 0) {
         const setCount = item === 0 ? 0 : -1
-        await this.deleteElementButton[item - setCount].waitForExist()
-        await this.deleteElementButton[item - setCount].click()
-        await browser.takeScreenshot();
+        await TestAgent.baseStep('delete element', async () => {
+            await this.waitForExist(this.deleteElementButton[item - setCount])
+            await this.doClick(this.deleteElementButton[item - setCount])
+        })
     }
 
     async deleteElementForCount(count: number) {
-        addStep(`Delete element of ${count} count`)
-        await step('', async () => {
-
+        await TestAgent.baseStep(`Delete element of ${count} count`, async () => {
+            for (let i = 0; i < count; i++) {
+                await this.deleteElement(0)
+            }
         })
-        for (let i = 0; i < count; i++) {
-            await this.deleteElement(0)
-        }
-        await browser.takeScreenshot();
     }
 }
 
