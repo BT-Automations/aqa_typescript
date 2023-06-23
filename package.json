@@ -4,10 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "custom:run": "wdio run wdio.conf.custom.ts",
-    "chrome:test": "wdio run wdio.conf.chrome.ts",
-    "firefoxtest": "wdio run wdio.conf.firefox.ts",
-    "cross-browser:test": "wdio run wdio.conf.cross-browser.ts",
+    "regression:run": "wdio run wdio.conf.regression.ts ",
     "report": "allure generate allure-results --clean && allure open"
   },
   "keywords": [],
