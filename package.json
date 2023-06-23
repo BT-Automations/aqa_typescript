@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "regression:run": "wdio run wdio.conf.regression.ts ",
+    "regression": "wdio run wdio.conf.regression.ts ",
     "report": "allure generate allure-results --clean && allure open"
   },
   "keywords": [],
