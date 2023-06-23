@@ -1,6 +1,6 @@
 import {SELENOID_SESSION_TIMEOUTS} from "./Timeouts";
 
-export const RUN_ENV = /^true$/i.test(parseParameters('D_env', 'true')) ? [] : ['chromedriver','geckodriver']
+export const RUN_ENV = /^true$/i.test(parseParameters('D_env', 'false')) ? [] : ['chromedriver','geckodriver']
 export const BROWSER_PARAM = parseParameters('D_browser', 'chrome')
 export const VERSION = parseParameters('D_version', '114.0')
 export const TEST_CASE = readTestCase(parseParameters('D_test', '-abtest'))
