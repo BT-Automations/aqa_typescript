@@ -1,4 +1,5 @@
 import Page from "./page";
+import TestAgent from "../../common/TestAgent";
 
 class BrokenImagesPage extends Page {
     get imageElement() {
@@ -13,15 +14,17 @@ class BrokenImagesPage extends Page {
     async checkBrokenImageCounts(count: number) {
         let brokenCount: number = 0
 
-        for (let i = 0; i < await this.imageElement.length; i++) {
-            const elem = await this.imageElement[i].getAttribute('src')
+        await TestAgent.baseStep(`broken images counts should be ${count}`, async () => {
+            for (let i = 0; i < await this.imageElement.length; i++) {
+                const elem = await this.imageElement[i].getAttribute('src')
 
-            if (await elem.match(/img\/avatar.*\.jpg/g) === null) {
-                brokenCount++
+                if (await elem.match(/img\/avatar.*\.jpg/g) === null) {
+                    brokenCount++
+                }
             }
-        }
 
-        await expect(brokenCount).toEqual(count)
+            await expect(brokenCount).toEqual(count)
+        })
     }
 }
 
