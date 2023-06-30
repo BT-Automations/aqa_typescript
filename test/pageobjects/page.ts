@@ -1,6 +1,7 @@
 import {browser} from "@wdio/globals"
 import $ from "webdriverio"
 import TestAgent from "../../common/TestAgent";
+import {TIMEOUT_VISIBILITY} from "../../common/Timeouts";
 
 /**
  * main page object containing all methods, selectors and functionality
@@ -21,19 +22,28 @@ export default class Page {
     }
 
     async doClick(element: WebdriverIO.Element | WebdriverIO.Element[$]) {
-        await TestAgent.baseStep(`Click ${await (element.selector)} element`, async () => {
+        await TestAgent.baseStep(`Click ${await element.selector} element`, async () => {
             await element.click()
         })
     }
 
     async doubleClick(element: WebdriverIO.Element | WebdriverIO.Element[$]) {
-        await TestAgent.baseStep(`Double click ${await (element.selector)} element`, async () => {
+        await TestAgent.baseStep(`Double click ${await element.selector} element`, async () => {
             await element.doubleClick()
         })
     }
 
+    async waitForExist(element: WebdriverIO.Element | WebdriverIO.Element[$]) {
+        await TestAgent.baseStep(`Wait for ${await element.selector} exist`, async () => {
+            await element.waitForExist({
+                timeout: TIMEOUT_VISIBILITY,
+                interval:200,
+                timeoutMsg: `${element.selector} should be visible !`})
+        })
+    }
+
     async waitForElementVisible(element: WebdriverIO.Element | WebdriverIO.Element[$]) {
-        await TestAgent.baseStep(`Wait for ${element.selector} visibility`, async () => {
+        await TestAgent.baseStep(`Wait for ${await element.selector} visibility`, async () => {
             await element.waitUntil(
                 async () => {
                     return (
